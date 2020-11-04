@@ -1,13 +1,17 @@
-# EYESY_OS
+# EYESY_OS_fates
 
-The operating system for the EYESY video synthesizer device.
+The operating system for the EYESY video synthesizer device - remixed.
 
-The system contains three main components: 
+Adaptation of the Critter&Guitari Eyesy video synth in order to run it on Fates (or norns shield) as a Sidekick App.
 
-* engines, generally a video engine takes audio, midi, and control messages as input and outputs video
-* pd, a Pd patch for controlling the video engine 
-* web, a web based editor and file manager
+Installation :
+ - clone this repo into '~/sidekick/patches'
+ - run 'deploy.sh'
+ 
+Usage:
+ - connect a display to the first hdmi out
+ - boot up the fates
+ - select Eyesy in Sidekick and control the video output via the hardware buttons
+ 
 
-Multiple video engines are supported as long as they respond to the messages sent by the controller. The controller is a Pd patch that reads the hardware knobs and buttons, handles MIDI and LINK connections and fowards all this to the video engine as Open Sound Control messages.
-
-Other random commands are in the system folder and platform specific files and services are in the platforms folder. Eventually other platforms may be supported, but currently it is all designed to run on the Raspberry Pi based EYESY hardware.  
+Rem: I haven't tested the web interface for mode editing, it probably doesn't work

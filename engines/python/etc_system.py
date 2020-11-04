@@ -12,9 +12,9 @@ import csv
 
 class System:
 
-    GRABS_PATH = "/sdcard/Grabs/"
-    MODES_PATH = "/sdcard/Modes/Python/"
-    SCENES_PATH = "/sdcard/Scenes.csv"
+    GRABS_PATH = "../../presets/Grabs/"
+    MODES_PATH = "../../presets/Modes/Python/"
+    SCENES_PATH = "../../presets/Scenes.csv"
 
     #RES =  (1280,720)
     RES =  (0,0)

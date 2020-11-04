@@ -4,7 +4,7 @@ import imp
 
 etc = None
 
-wifi = imp.load_source('wifi_control', '/home/music/EYESY_OS/system/wifi_control.py')
+wifi = imp.load_source('wifi_control', '../../system/wifi_control.py')
 
 def init(etc_obj) :
     global etc

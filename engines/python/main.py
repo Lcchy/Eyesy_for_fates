@@ -44,6 +44,7 @@ print "opening frame buffer..."
 hwscreen = pygame.display.set_mode(etc.RES,  pygame.FULLSCREEN | pygame.DOUBLEBUF | pygame.HWSURFACE, 32)
 #hwscreen = pygame.display.set_mode(etc.RES,  pygame.FULLSCREEN | pygame.DOUBLEBUF, 32)
 screen = pygame.Surface(hwscreen.get_size())
+pygame.mouse.set_visible(False)  # not showing mouse
 etc.xres=hwscreen.get_width()
 etc.yres=hwscreen.get_height()
 print "opened screen at: " + str(hwscreen.get_size())
@@ -147,7 +148,7 @@ while 1:
             exitexit()
         elif event.type == pygame.KEYDOWN:
             if event.key == pygame.K_ESCAPE:
-                exitexit()
+                None # exitexit()   This exit was triggered by but0 press on fates (??) - It is not needed
 
     # measure fps
     etc.frame_count += 1

@@ -1,0 +1,3 @@
+inputGain 100;
+trigSource 0;
+midiCh 1;

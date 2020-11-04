@@ -1,0 +1,10 @@
+xcb_connection_has_error() returned true
+pygame 1.9.4.post1
+Hello from the pygame community. https://www.pygame.org/contribute.html
+starting...
+pygame version 1.9.4.post1
+opening frame buffer...
+Traceback (most recent call last):
+  File "main.py", line 44, in <module>
+    hwscreen = pygame.display.set_mode(etc.RES,  pygame.FULLSCREEN | pygame.DOUBLEBUF | pygame.HWSURFACE, 32)
+pygame.error: Unable to open a console terminal
