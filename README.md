@@ -15,3 +15,8 @@ Usage:
  
 
 Rem: I haven't tested the web interface for mode editing, it probably doesn't work
+
+TODO:
+- Map Midi controls for all parameters
+- Make the Open Frameworks engine work
+- Web interface
