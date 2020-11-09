@@ -23,6 +23,8 @@ Adaptation of the Critter&Guitari Eyesy video synth in order to run it on Fates 
 |-------|-------------|------------------|----------------------|-------------------|---------------------|-----------|--------------|-----------------|----------------------------|----------|------------|----------------|--------------------------|
 | Control | Mode Params | Background Color | Previous, Next Scene | Auto Clear Toggle | Previous, Next Mode | Info Disp | Send Trigger | Take Screenshot | Save or delete (long hold) | ShiftKey | Input Gain | Trigger Source | Midi In Channel (init 1) |
 
+ETC Manual : https://github.com/critterandguitari/ETC_Manual/blob/master/manual.md
+
 ### Rem:
 - I haven't tested the web interface for mode editing, it probably doesn't work
 - If you don't connect the display before booting, Eyesy will launch on the fates display which is fun
