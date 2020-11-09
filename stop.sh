@@ -1,2 +1,4 @@
 #!/bin/bash
-sudo systemctl stop eyesy-python.service
+pidof pd | xargs kill
+
+systemctl stop eyesy-python.service

@@ -137,8 +137,8 @@ while 1:
         midi_led_flashing = True
 
     # get knobs, checking for override, and check for new note on
-    etc.update_knobs_and_notes()
-
+    etc.update_knobs_and_notes()  
+    
     # check for midi program change
     etc.check_pgm_change()
 
