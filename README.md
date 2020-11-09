@@ -5,9 +5,12 @@ The operating system for the EYESY video synthesizer device - remixed.
 Adaptation of the Critter&Guitari Eyesy video synth in order to run it on Fates (or norns shield) as a Sidekick App.
 
 ### Installation :
- - sudo apt install python-pygame python-liblo python-alsaaudio
- - clone this repo into '~/sidekick/patches'
- - run 'deploy.sh'
+```
+ sudo apt install python-pygame python-liblo python-alsaaudio
+ git clone https://github.com/Lcchy/Eyesy_for_fates Eyesy
+ cd Eyesy
+ ./deploy.sh
+ ```
  
 ### Usage:
  - connect a display to the first hdmi out
