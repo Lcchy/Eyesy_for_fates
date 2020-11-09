@@ -7,6 +7,7 @@ Adaptation of the Critter&Guitari Eyesy video synth in order to run it on Fates 
 ### Installation :
 ```
  sudo apt install python-pygame python-liblo python-alsaaudio
+ cd ~/sidekick/patches
  git clone https://github.com/Lcchy/Eyesy_for_fates Eyesy
  cd Eyesy
  ./deploy.sh
