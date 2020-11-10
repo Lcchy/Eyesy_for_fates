@@ -1,7 +1,9 @@
 #!/bin/bash
 
 # copy files
-sudo cp systemd/eyesy-python.service /lib/systemd/system
+sudo rm -f /lib/systemd/system/eyesy-python.service
+sudo chmod 644 systemd/eyesy-python.service
+sudo cp systemd/eyesy-python.service /etc/systemd/system
 
 cp pd/*.pd_linux ../../pdexternals
 
