@@ -24,9 +24,9 @@ Adaptation of the Critter&Guitari Eyesy video synth in order to run it on Fates 
  
  I also exposed various controls to midi:
   
-  | Midi CC    | 21,22,23,24 | 25               | 26, 27               | 28                | 29, 30              | 31        | 32           | 33              | 34                         | 35       | 36         | 37             | 38                       |
-|-------|-------------|------------------|----------------------|-------------------|---------------------|-----------|--------------|-----------------|----------------------------|----------|------------|----------------|--------------------------|
-| Control | Mode Params | Background Color | Previous, Next Scene | Auto Clear Toggle | Previous, Next Mode | Info Disp | Send Trigger | Take Screenshot | Save or delete (long hold) | ShiftKey | Input Gain | Trigger Source | Midi In Channel (init 1) |
+  | Midi CC    | 21,22,23,24 | 25               | 26               | 27               | 28                | 29                | 30              | 31        | 32           | 33              | 34                         | 35       |
+  |-------|-------------|------------------|----------------------|-------------------|---------------------|-----------|--------------|-----------------|----------------------------|----------|------------|----------------|
+  | Control | Mode Params | Background Color | Scene selection | Save or delete (long hold) | Auto Clear Toggle | Mode Selection | Take Screenshot | Info Disp | Send Trigger | ShiftKey | Input Gain | Trigger Source |
 
 ETC Manual : https://github.com/critterandguitari/ETC_Manual/blob/master/manual.md
 
