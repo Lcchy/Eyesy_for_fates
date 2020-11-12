@@ -9,14 +9,14 @@ trig_last_time = 0
 sin = [0] * 100
 
 def init (etc_object) :
-    global inp, etc, trig_this_time, trig_last_time, sin
+    global card, inp, etc, trig_this_time, trig_last_time, sin
     etc = etc_object
     #setup alsa for sound in
     inp = alsaaudio.PCM(alsaaudio.PCM_CAPTURE,alsaaudio.PCM_NONBLOCK)
     inp.setchannels(1)
-    inp.setrate(6000)       # Original value of 11025 was giving error..
+    inp.setrate(44100)       # Original value of 11025 was giving error..
     inp.setformat(alsaaudio.PCM_FORMAT_S16_LE)
-    inp.setperiodsize(300)
+    inp.setperiodsize(1024)
     trig_last_time = time.time()
     trig_this_time = time.time()
     
@@ -28,7 +28,7 @@ def recv() :
     # get audio
     l,data = inp.read()
     peak = 0
-    while l:
+    if l > 0:
         for i in range(0,100) :
             try :
                 avg = audioop.getsample(data, 2, i * 3)
@@ -54,5 +54,4 @@ def recv() :
             except :
                 pass
         l,data = inp.read()
-
 
