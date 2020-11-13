@@ -4,6 +4,10 @@ The operating system for the EYESY video synthesizer device - remixed.
 
 Adaptation of the Critter&Guitari Eyesy video synth in order to run it on Fates (or norns shield) as a Sidekick App.
 
+ETC (and Eyesy) Manual : https://github.com/critterandguitari/ETC_Manual/blob/master/manual.md
+
+Support thread for this project : https://llllllll.co/t/critter-guitari-video-synth-eyesy-for-fates-working/38144
+
 ### Installation :
 ```
  sudo apt install python-pygame python-liblo python-alsaaudio python-pip
@@ -28,7 +32,6 @@ Adaptation of the Critter&Guitari Eyesy video synth in order to run it on Fates 
   |-------|-------------|------------------|----------------------|-------------------|---------------------|-----------|--------------|-----------------|----------------------------|----------|------------|----------------|
   | Control | Mode Params | Background Color | Scene selection | Save or delete (long hold) | Auto Clear Toggle | Mode Selection | Take Screenshot | Info Disp | Send Trigger | ShiftKey | Input Gain | Trigger Source |
 
-ETC Manual : https://github.com/critterandguitari/ETC_Manual/blob/master/manual.md
 
 ### Rem:
 - I haven't tested the web interface for mode editing, it probably doesn't work
