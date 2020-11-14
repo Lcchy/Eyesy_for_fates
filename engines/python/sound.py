@@ -29,7 +29,6 @@ def recv() :
     l,data = inp.read()
     peak = 0
     if l > 0:
-        #print l
         for i in range(0,100) :
             try :
                 avg = audioop.getsample(data, 2, i * 3)
@@ -38,7 +37,6 @@ def recv() :
                 avg = avg / 3
                 # scale it
                 avg = int(avg * etc.audio_scale)
-                #print avg
                 if (avg > 20000) :
                     trig_this_time = time.time()
                     if (trig_this_time - trig_last_time) > .05:
@@ -56,3 +54,4 @@ def recv() :
             except :
                 pass
         l,data = inp.read()
+
