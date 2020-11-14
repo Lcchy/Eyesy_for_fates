@@ -4,7 +4,7 @@ import time
 import random
 import math
 
-lines = 12
+lines = 10 
 width = 720 / lines
 offset = width / 2
 xpos = 0
