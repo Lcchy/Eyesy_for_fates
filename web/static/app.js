@@ -1,7 +1,8 @@
 var appBaseURL = 'http://' + location.host
 var fsurl = appBaseURL + '/fmdata'
-var workingDir = '/sdcard/';
-var baseDirLabel = 'Home';
+var workingDir = '/home/we/sidekick/patches/Eyesy/presets';
+var baseDir = workingDir;
+var baseDirLabel = 'Presets';
 var clipboard = {};
 
 var editor = null
@@ -120,7 +121,10 @@ function renderBreadcrumb () {
     //var breadelement = $('<li class="fsdir"><a href="#">'+baseDirLabel+'</a></li>');
     //breadelement.data("path", absPath);
    // $("#fsbreadcrumb").append(breadelement);
-    var path = workingDir.split('/');
+    // Split off base directory
+    var splitPath = workingDir.split(baseDir);
+    var path = splitPath[1].split('/');
+    path.unshift(baseDir);
     var count = 0;
     path.forEach(function(p) {
         if (p) {
@@ -171,11 +175,11 @@ function alertDialog(msg){
 
 function pasteCopyDialog(){
     newModal('Copy');
-    addModalBody('<p>Copy files: </p>');   
+    addModalBody('<p>Copy files: </p>');
     clipboard.nodes.forEach(function(n) {
-        addModalBody(nodeNameWithIcon(n.path,n.type));   
-    });       
-    addModalBody('<p>to current folder?</p>');   
+        addModalBody(nodeNameWithIcon(n.path,n.type));
+    });
+    addModalBody('<p>to current folder?</p>');
     addModalButton('Cancel', hideModal)
     addModalButton('Paste', function(){
         hideModal();
@@ -196,11 +200,11 @@ function pasteCopyDialog(){
 
 function pasteMoveDialog(){
     newModal('Move');
-    addModalBody('<p>Move files: </p>');   
+    addModalBody('<p>Move files: </p>');
     clipboard.nodes.forEach(function(n) {
-        addModalBody(nodeNameWithIcon(n.path,n.type));  
-    });       
-    addModalBody('<p>to current folder?</p>');  
+        addModalBody(nodeNameWithIcon(n.path,n.type));
+    });
+    addModalBody('<p>to current folder?</p>');
     addModalButton('Cancel', hideModal);
     addModalButton('Move',  function(){
         hideModal();
@@ -220,14 +224,14 @@ function pasteMoveDialog(){
 }
 
 function deleteDialog(){
-    var selectedNodes = getSelectedNodes(); 
-    
+    var selectedNodes = getSelectedNodes();
+
     if (selectedNodes.length > 0) {
         newModal('Delete');
         addModalBody('<p>Permanentamentally remove these files?</p>');
-        
+
         selectedNodes.forEach(function(n) {
-            addModalBody(nodeNameWithIcon(n.path,n.type));   
+            addModalBody(nodeNameWithIcon(n.path,n.type));
         });
 
         addModalButton('Cancel', hideModal);
@@ -259,7 +263,7 @@ function zipDialog(){
         if (selectedNodes[0].type == 'folder') {
             gotaZip = true;
             newModal('Zip Folder');
-            addModalBody('<p>Zip <b>'+basename+'?</b></p>');   
+            addModalBody('<p>Zip <b>'+basename+'?</b></p>');
             addModalButton('Cancel', hideModal)
             addModalButton('Zip', function(){
                 hideModal();
@@ -276,8 +280,8 @@ function zipDialog(){
             });
             showModal();
         }
-    } 
-    if (!gotaZip) alertDialog('<p>Choose one folder to zip.</p>');   
+    }
+    if (!gotaZip) alertDialog('<p>Choose one folder to zip.</p>');
 }
 
 function unzipDialog(){
@@ -291,7 +295,7 @@ function unzipDialog(){
         if (extension == 'zip') {
             gotaZip = true;
             newModal('Unzip');
-            addModalBody('<p>Unzip <b>'+basename+'</b> into current folder?</p>');   
+            addModalBody('<p>Unzip <b>'+basename+'</b> into current folder?</p>');
             addModalButton('Cancel', hideModal)
             addModalButton('Unzip', function(){
                 hideModal();
@@ -308,8 +312,8 @@ function unzipDialog(){
             });
             showModal();
         }
-    } 
-    if (!gotaZip) alertDialog('<p>Choose one .zip file to unzip.</p>');   
+    }
+    if (!gotaZip) alertDialog('<p>Choose one .zip file to unzip.</p>');
 }
 
 function renameDialog() {
@@ -335,8 +339,8 @@ function renameDialog() {
             clipboard = {};
         });
         showModal();
-    } 
-    else alertDialog('<p>Choose one item to rename.</p>');  
+    }
+    else alertDialog('<p>Choose one item to rename.</p>');
 }
 
 function newFolderDialog() {
@@ -357,6 +361,24 @@ function newFolderDialog() {
     showModal();
 }
 
+function newFileDialog() {
+    newModal('New File');
+    addModalBody('<input type="text" id="new-file-name" value="Untitled"></input>');
+    addModalButton('Cancel', hideModal);
+    addModalButton('New File', function(){
+        hideModal();
+        $.get(fsurl+'?operation=create_file', { 'path' : workingDir, 'name' : $('#new-file-name').val() })
+        .done(function () {
+            console.log('created file');
+        	refreshWorkingDir();
+        })
+        .fail(function () {
+            console.log('problem creating file');
+        });
+    });
+    showModal();
+}
+
 function openFileDialog(path) {
     var extension=path.split(".").pop();
     newModal('Open File');
@@ -372,18 +394,18 @@ function openFileDialog(path) {
 }
 
 $(function () {
- 
-    // this disables page while loading things 
-    $(document).ajaxStart (function() { 
+
+    // this disables page while loading things
+    $(document).ajaxStart (function() {
             $('body').addClass("loading");
             console.log("ajax start")
     });
         // When ajaxStop is fired, rmeove 'loading' from body class
-    $(document).ajaxStop (function() { 
-            $('body').removeClass("loading"); 
-            console.log("ajax stop");        
+    $(document).ajaxStop (function() {
+            $('body').removeClass("loading");
+            console.log("ajax stop");
     });
-        
+
     editor = ace.edit("editor");
     editor.setTheme("ace/theme/merbivore_soft");
     //editor.getSession().setMode("ace/mode/lua");
@@ -394,7 +416,7 @@ $(function () {
 
     $('#fileupload').fileupload({
 		// DISABLE drag and drop uploading
-       	dropZone: null,  
+       	dropZone: null,
 		url: appBaseURL + '/upload',
         dataType: 'json',
         formData: function() {
@@ -443,14 +465,14 @@ $(function () {
 	}
     });
 
-    $("#wifi-save-ap").click(function() {	 
+    $("#wifi-save-ap").click(function() {
 	$.post(appBaseURL + "/wifi_save_ap", { name: $('#wifi-ap-name').val(), pw: $('#wifi-ap-pw').val() })
 	.done(function(data) {
             console.log(data);
 	});
     });
 
-    $("#wifi-save-net").click(function() {	 
+    $("#wifi-save-net").click(function() {
 	$.post(appBaseURL + "/wifi_save_net", { name: $('#wifi-net-name').val(), pw: $('#wifi-net-pw').val() })
 	.done(function(data) {
 	    $.get(appBaseURL + '/wifi_get_net', function(data) {
@@ -462,7 +484,7 @@ $(function () {
 	});
     });
 
-    $("#compvid-save-format").click(function() {	 
+    $("#compvid-save-format").click(function() {
 	var fmt = 'ntsc'
     	if ($('input:radio[name=compvid]')[1].checked) { fmt = 'pal' }
 	$.post(appBaseURL + "/compvid_save_format", { val: fmt })
@@ -496,7 +518,7 @@ $(function () {
         });
     });
 
-    $("#save").click(function() {	 
+    $("#save").click(function() {
 	$.post(appBaseURL + "/save", { fpath: currentEditorFile, contents: editor.getValue() })
 	.done(function(data) {
             console.log(data);
@@ -517,6 +539,7 @@ $(function () {
 
     $("#new-folder-but").click(newFolderDialog);
 
+    $("#new-file-but").click(newFileDialog);
 
     $("#rename-but").click(renameDialog);
 
@@ -537,9 +560,9 @@ $(function () {
             if (clipboard.operation == "copy") pasteCopyDialog();
             else if (clipboard.operation == "cut") pasteMoveDialog();
         }
-        else alertDialog('<p>Choose files then select Copy or Cut to move.</p>');   
+        else alertDialog('<p>Choose files then select Copy or Cut to move.</p>');
     });
-   
+
     $("#delete-but").click(deleteDialog);
 
     $("#zip-but").click(zipDialog);
@@ -572,14 +595,14 @@ $(function () {
     })
     .fail(function () {
         console.log('oops');
-    });    
-    
+    });
+
     $.get(appBaseURL + '/wifi_get_ap', function(data) {
 	ap = JSON.parse(data);
 	$('#wifi-ap-name').val(ap.name)
 	$('#wifi-ap-pw').val(ap.pw)
     })
- 
+
     $.get(appBaseURL + '/wifi_get_net', function(data) {
 	ap = JSON.parse(data);
 	$('#wifi-net-name').val(ap.name)
@@ -598,5 +621,6 @@ $(function () {
 
 
 });
+
 
 

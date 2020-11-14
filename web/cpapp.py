@@ -55,14 +55,14 @@ class Root():
 
     def wifi_save_net(self, name, pw):
         lines = run_cmd('wpa_passphrase ' + name + ' ' + pw).splitlines()
-        
+
         # from standard rpi wpa_supplicant.conf
         out = "ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev\nupdate_config=1\ncountry=US\n\n"
         for l in lines :
             # remove plain text pw
             if not l.strip().startswith("#psk"):
                 out += l + "\n"
-        
+
         f = open(USER_DIR + "/System/wpa_supplicant.conf", "w")
         f.write(out)
         f.close()
@@ -108,7 +108,7 @@ class Root():
         lines = f.read().splitlines()
         return json.dumps({'name':lines[0], 'pw':lines[1]})
     wifi_get_ap.exposed = True
- 
+
     def compvid_save_format(self, val):
         os.system("sudo mount /boot -o remount,rw")
         if (val == 'ntsc') :
@@ -124,7 +124,7 @@ class Root():
         if (v == 0) : return json.dumps({'format':'ntsc'})
         else : return json.dumps({'format':'pal'})
     compvid_get_format.exposed = True
-    
+
     def start_video_engine(self, engine):
         # stop them both
         os.system("sudo systemctl stop eyesy-oflua.service")
@@ -153,7 +153,7 @@ class Root():
         liblo.send(osc_target, "/reload", 1)
         return "reloaded mode"
     reload_mode.exposed = True
- 
+
     def save(self, fpath, contents):
         p = fpath
         mode_path = MODES_PATH+p
@@ -162,7 +162,7 @@ class Root():
         print contents
         return "SAVED " + fpath
     save.exposed = True
-   
+
     def get_grabs(self):
         images = []
         for filepath in sorted(glob.glob(GRABS_PATH+'*.jpg')):
@@ -207,7 +207,7 @@ class Root():
         folder = dst
         filename = upload.filename
         size = 0
-        filepath = file_operations.BASE_DIR + folder + '/' + filename 
+        filepath = file_operations.BASE_DIR + folder + '/' + filename
         filepath = file_operations.check_and_inc_name(filepath)
         with open(filepath, 'wb') as newfile:
             while True:
@@ -220,11 +220,11 @@ class Root():
         p, ext = os.path.splitext(filepath)
         cherrypy.response.headers['Content-Type'] = "application/json"
         return '{"files":[{"name":"x","size":'+str(size)+',"url":"na","thumbnailUrl":"na","deleteUrl":"na","deleteType":"DELETE"}]}'
-        
+
     upload.exposed = True
-  
+
     def fmdata(self, **data):
-        print "data op request" 
+        print "data op request"
         ret = ''
         if 'operation' in data :
             cherrypy.response.headers['Content-Type'] = "application/json"
@@ -232,6 +232,8 @@ class Root():
                 return file_operations.get_node(data['path'])
             if data['operation'] == 'create_node' :
                 return file_operations.create(data['path'], data['name'])
+            if data['operation'] == 'create_file' :
+                return file_operations.create_file(data['path'], data['name'])
             if data['operation'] == 'rename_node' :
                 return file_operations.rename(data['path'], data['name'])
             if data['operation'] == 'delete_node' :
@@ -251,6 +253,7 @@ class Root():
             return "no operation specified"
 
     fmdata.exposed = True
+
 
 
 

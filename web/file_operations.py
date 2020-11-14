@@ -5,7 +5,7 @@ import cherrypy
 
 BASE_DIR = "/"
 
-#TODO check all the paths here 
+#TODO check all the paths here
 def check_path(path) :
     path = os.path.normpath(path)
     print path
@@ -24,7 +24,7 @@ def check_and_inc_name(path) :
 
 #TODO don't return ok if error what the hell
 def rename(old, new):
-    src = BASE_DIR + old 
+    src = BASE_DIR + old
     dst = os.path.dirname(src) + '/' + new
     if src != dst :
         dst = check_and_inc_name(dst)
@@ -37,9 +37,15 @@ def create(dst, name):
     os.mkdir(dst)
     return '{"ok":"ok"}'
 
+def create_file(dst, name):
+    dst = BASE_DIR + dst + '/' + name
+    dst = check_and_inc_name(dst)
+    os.mknod(dst)
+    return '{"ok":"ok"}'
+
 def move(src, dst):
     src = BASE_DIR + src
-    dst = BASE_DIR + dst + '/' + os.path.basename(src)  
+    dst = BASE_DIR + dst + '/' + os.path.basename(src)
     dst = check_and_inc_name(dst)
     shutil.move(src, dst)
     return '{"ok":"ok"}'
@@ -59,7 +65,7 @@ def zip(folder):
 
 def copy(src, dst):
     src = BASE_DIR + src
-    dst = BASE_DIR + dst 
+    dst = BASE_DIR + dst
     dst = dst + '/' + os.path.basename(src)
     dst = check_and_inc_name(dst)
     if os.path.isfile(src) :
@@ -69,7 +75,7 @@ def copy(src, dst):
     return '{"ok":"ok"}'
 
 def delete(src):
-    src = BASE_DIR + src 
+    src = BASE_DIR + src
     if os.path.isfile(src) :
         os.remove(src)
     if os.path.isdir(src) :
@@ -95,7 +101,7 @@ def file_to_dict(fpath):
         'name': os.path.basename(fpath),
         'children': False,
         'type': 'file',
-        'size': str(convert_bytes(os.stat(fpath).st_size)), 
+        'size': str(convert_bytes(os.stat(fpath).st_size)),
         'path': fpath.split(BASE_DIR,1)[1],
         }
 
@@ -122,7 +128,7 @@ def get_files(rootpath):
             path = os.path.join(root, folder)
             #if check_path(path):
             contents += [folder_to_dict(path)]
-    
+
     for ffile in files :
         if not ffile[0] == '.' :
             path = os.path.join(root, ffile)
@@ -131,5 +137,6 @@ def get_files(rootpath):
 
     #print json.dumps(contents, indent=4, encoding='utf-8')
     return json.dumps(contents, indent=4, encoding='utf-8')
+
 
 
