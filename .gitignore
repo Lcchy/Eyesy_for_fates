@@ -2,3 +2,6 @@
 web/node/node_modules/
 tmp/
 *.pyc
+presets/*
+
+system/shift-params.txt
