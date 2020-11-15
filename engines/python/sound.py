@@ -14,9 +14,9 @@ def init (etc_object) :
     #setup alsa for sound in
     inp = alsaaudio.PCM(alsaaudio.PCM_CAPTURE,alsaaudio.PCM_NONBLOCK)
     inp.setchannels(2) 
-    inp.setrate(6000)       # Original value of 11025 was giving error.. OR 44100
+    inp.setrate(44100)       # Original value of 11025 was giving error.. OR 44100
     inp.setformat(alsaaudio.PCM_FORMAT_S16_LE)
-    inp.setperiodsize(300)  # OR 1024
+    inp.setperiodsize(1024)  # OR 1024
     trig_last_time = time.time()
     trig_this_time = time.time()
     
