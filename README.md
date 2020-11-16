@@ -9,8 +9,6 @@ Support thread for this project : https://llllllll.co/t/critter-guitari-video-sy
 
 ### Installation :
 ```
- sudo apt install python-pygame python-liblo python-alsaaudio python-pip
- sudo pip install psutil
  cd ~/sidekick/patches
  git clone https://github.com/Lcchy/Eyesy_for_fates Eyesy
  cd Eyesy
@@ -31,13 +29,15 @@ Support thread for this project : https://llllllll.co/t/critter-guitari-video-sy
   |-------|-------------|------------------|----------------------|-------------------|---------------------|-----------|--------------|-----------------|----------------------------|----------|------------|----------------|
   | Control | Mode Params | Background Color | Scene selection | Save or delete (long hold) | Auto Clear Toggle | Mode Selection | Take Screenshot | Info Disp | Send Trigger | ShiftKey | Input Gain | Trigger Source |
 
+### Web editor
+The web editor should be accessible at http://norns.local:8080/
+
+See the Eyesy manual for more details on using the web editor.
 
 ### Rem:
-- I haven't tested the web interface for mode editing, it probably doesn't work
 - If you don't connect the display before booting, Eyesy will launch on the fates display which is fun
 - Eyesy uses alsa as a backend which means you cannot use other audio processes at the same time
 
 ### TODO:
 - Make the Open Frameworks engine work
 - Move everything to Jack
-- Web interface
