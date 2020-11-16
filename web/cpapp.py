@@ -29,9 +29,7 @@ current_dir = os.path.dirname(os.path.abspath(__file__))
 file_operations = imp.load_source('file_operations', current_dir + '/file_operations.py')
 
 
-GRABS_PATH = "/sdcard/Grabs/"
-MODES_PATH = "/"
-USER_DIR = "/sdcard/"
+GRABS_PATH = "/home/we/sidekick/patches/Eyesy/presets/Grabs/"
 
 try:
 	osc_target = liblo.Address(4000)
@@ -47,83 +45,10 @@ class Root():
 
     # loads a file
     def get_file(self, fpath):
-        mode_path = MODES_PATH+fpath
-        mode = open(mode_path, 'r').read()
+        mode = open(file_operations.BASE_DIR + fpath, 'r').read()
         #liblo.send(osc_target, "/set", p)
         return mode
     get_file.exposed = True
-
-    def wifi_save_net(self, name, pw):
-        lines = run_cmd('wpa_passphrase ' + name + ' ' + pw).splitlines()
-
-        # from standard rpi wpa_supplicant.conf
-        out = "ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev\nupdate_config=1\ncountry=US\n\n"
-        for l in lines :
-            # remove plain text pw
-            if not l.strip().startswith("#psk"):
-                out += l + "\n"
-
-        f = open(USER_DIR + "/System/wpa_supplicant.conf", "w")
-        f.write(out)
-        f.close()
-        return '{"ok":"ok"}'
-    wifi_save_net.exposed = True
-
-    def wifi_get_net(self) :
-        f = open(USER_DIR + "/System/wpa_supplicant.conf", "r")
-        lines = f.read().splitlines()
-        ssid = ""
-        for l in lines :
-            if l.strip().startswith("ssid"):
-                ssid = l.strip().replace("ssid=", "").replace("\"", "")
-            #if l.strip().startswith("psk"):
-            #    for c in l.strip().replace("psk=", "").replace("\"", "") :
-            #        pw += "*"
-        pw = "********"
-        return json.dumps({'name':ssid, 'pw':pw})
-    wifi_get_net.exposed = True
-
-    def wifi_save_ap(self, name, pw):
-        # check for wifi file, create one if not found
-        ap_file = USER_DIR + "/System/ap.txt"
-        if os.path.exists(ap_file):
-            f = open(ap_file, "r")
-        else :
-            print "wifi file not found, creating"
-            f = open(ap_file, "w")
-            f.close()
-        with open(ap_file, "w") as wf:
-            wf.write(name + "\n")
-            wf.write(pw + "\n")
-        return '{"ok":"ok"}'
-    wifi_save_ap.exposed = True
-
-    def wifi_get_ap(self):
-        # check for wifi file
-        ap_file = USER_DIR + "/ap.txt"
-        if os.path.exists(ap_file):
-            f = open(USER_DIR + "/ap.txt", "r")
-        else :
-            return json.dumps({'name':'EYESY', 'pw':'coolmusic'})
-        lines = f.read().splitlines()
-        return json.dumps({'name':lines[0], 'pw':lines[1]})
-    wifi_get_ap.exposed = True
-
-    def compvid_save_format(self, val):
-        os.system("sudo mount /boot -o remount,rw")
-        if (val == 'ntsc') :
-            os.system("sudo sed -i 's/sdtv_mode=2/#sdtv_mode=2/g' /boot/config.txt")
-        if (val == 'pal') :
-            os.system("sudo sed -i 's/#*sdtv_mode=2/sdtv_mode=2/g' /boot/config.txt")
-        os.system("sudo mount /boot -o remount,ro")
-        return '{"ok":"ok"}'
-    compvid_save_format.exposed = True
-
-    def compvid_get_format(self):
-        v = os.system("grep '#sdtv_mode=2' /boot/config.txt")
-        if (v == 0) : return json.dumps({'format':'ntsc'})
-        else : return json.dumps({'format':'pal'})
-    compvid_get_format.exposed = True
 
     def start_video_engine(self, engine):
         # stop them both
@@ -155,9 +80,7 @@ class Root():
     reload_mode.exposed = True
 
     def save(self, fpath, contents):
-        p = fpath
-        mode_path = MODES_PATH+p
-        with open(mode_path, "w") as text_file:
+        with open(file_operations.BASE_DIR + fpath, "w") as text_file:
             text_file.write(contents)
         print contents
         return "SAVED " + fpath

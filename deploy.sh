@@ -5,7 +5,7 @@ set -ex
 # copy files
 sudo rm -f /lib/systemd/system/eyesy-python.service     #In case it is reinstalling
 
-services=("eyesy-python.service" "eyesy-web.service" "eyesy-web-socket.service")
+services=("eyesy-python.service" "eyesy-web.service" "eyesy-web-socket.service" "eyesy-pd.service")
 for i in "${services[@]}"
 do
   sudo chmod 644 systemd/$i

@@ -3,7 +3,8 @@ import os
 import shutil
 import cherrypy
 
-BASE_DIR = "/"
+# Making assumptions about install location here.
+BASE_DIR = "/home/we/sidekick/patches/Eyesy/presets/"
 
 #TODO check all the paths here
 def check_path(path) :

@@ -1,7 +1,7 @@
 var appBaseURL = 'http://' + location.host
 var fsurl = appBaseURL + '/fmdata'
-var workingDir = '/home/we/sidekick/patches/Eyesy/presets';
-var baseDir = workingDir;
+// Note that this workingDir is relative to the BASE_DIR in file_operations.py.
+var workingDir = '';
 var baseDirLabel = 'Presets';
 var clipboard = {};
 
@@ -87,55 +87,55 @@ function nodeNameWithIcon(path, type){
 function renderFilesTable(d){
     $("#ftable").empty();
     var path = '';
+    // An array of regex patterns representing files to filter out.
+    var filter = /\.pyc$/;
     d.forEach(function(c){
-        var basename = c.path.split('/').pop();
-        var sizeType = 'Folder'  // display size or Folder for folder
-        if (c.type == 'folder'){
-            sizeType = 'Folder'
-            var trow = $('<tr class="fsdir">');
-            var tdata = $('<td class="fsdirname"></td>');
-            tdata.append(nodeNameWithIcon(c.path, c.type));
-        } else {
-            sizeType = c.size;
-            var trow = $('<tr class="fsfile">');
-            var tdata = $('<td class="fsfilename">');
-            var dlButton = $('<div class="dl-but"><a href="'+appBaseURL+'/download?fpath='+encodeURIComponent(c.path)+'&cb=cool">\u2B07</a></div>');
-            tdata.append(dlButton);
-            tdata.append(nodeNameWithIcon(c.path, c.type));
+        if (!c.path.match(filter)) {
+            var basename = c.path.split('/').pop();
+            var sizeType = 'Folder'  // display size or Folder for folder
+            if (c.type == 'folder'){
+                sizeType = 'Folder'
+                var trow = $('<tr class="fsdir">');
+                var tdata = $('<td class="fsdirname"></td>');
+                tdata.append(nodeNameWithIcon(c.path, c.type));
+            } else {
+                sizeType = c.size;
+                var trow = $('<tr class="fsfile">');
+                var tdata = $('<td class="fsfilename">');
+                var dlButton = $('<div class="dl-but"><a href="'+appBaseURL+'/download?fpath='+encodeURIComponent(c.path)+'&cb=cool">\u2B07</a></div>');
+                tdata.append(dlButton);
+                tdata.append(nodeNameWithIcon(c.path, c.type));
+            }
+            trow.data("path", c.path);
+            trow.data("type", c.type);
+            var checkbox = $('<td><div class="checkbox ff-select"><input type="checkbox" value=""></div></td>');
+            trow.append(checkbox);
+            trow.append(tdata);
+            //trow.append('<td>'+sizeType+'</td>');
+            $("#ftable").append(trow);
         }
-        trow.data("path", c.path);
-        trow.data("type", c.type);
-        var checkbox = $('<td><div class="checkbox ff-select"><input type="checkbox" value=""></div></td>');
-        trow.append(checkbox);
-        trow.append(tdata);
-        //trow.append('<td>'+sizeType+'</td>');
-        $("#ftable").append(trow);
     });
     window.scrollTo(0,0);
 }
 
 function renderBreadcrumb () {
+    // Clear out the breadcrumb.
     $("#fsbreadcrumb").empty();
-    var absPath = '';
-    // NOTE hack for removing base dir and replacing with SD CARD or USB DRIVE for Organelle
-    //var breadelement = $('<li class="fsdir"><a href="#">'+baseDirLabel+'</a></li>');
-    //breadelement.data("path", absPath);
-   // $("#fsbreadcrumb").append(breadelement);
-    // Split off base directory
-    var splitPath = workingDir.split(baseDir);
-    var path = splitPath[1].split('/');
-    path.unshift(baseDir);
-    var count = 0;
-    path.forEach(function(p) {
-        if (p) {
-            absPath +=  p + '/';
-            if (count == 0) var breadelement = $('<li class="fsdir">' + baseDirLabel + '/</li>');
-            else var breadelement = $('<li class="fsdir">' + p + '/</li>');
-            count++;
-            breadelement.data("path", absPath);
+    // Always print the root element.
+    var rootElement = $('<li class="fsdir">' + baseDirLabel + '</li><li>/</li>');
+    rootElement.data("path", '');
+    $("#fsbreadcrumb").append(rootElement);
+
+    if (workingDir) {
+        var absPath = [];
+        var path = workingDir.split('/');
+        path.forEach(function(p) {
+            absPath.push(p);
+            var breadelement = $('<li class="fsdir">' + p + '</li><li>/</li>');
+            breadelement.data("path", absPath.join('/'));
             $("#fsbreadcrumb").append(breadelement);
-        }
-    });
+        });
+    }
 }
 
 // init the modal dialog with title
@@ -465,34 +465,6 @@ $(function () {
 	}
     });
 
-    $("#wifi-save-ap").click(function() {
-	$.post(appBaseURL + "/wifi_save_ap", { name: $('#wifi-ap-name').val(), pw: $('#wifi-ap-pw').val() })
-	.done(function(data) {
-            console.log(data);
-	});
-    });
-
-    $("#wifi-save-net").click(function() {
-	$.post(appBaseURL + "/wifi_save_net", { name: $('#wifi-net-name').val(), pw: $('#wifi-net-pw').val() })
-	.done(function(data) {
-	    $.get(appBaseURL + '/wifi_get_net', function(data) {
-		ap = JSON.parse(data);
-		$('#wifi-net-name').val(ap.name)
-		$('#wifi-net-pw').val(ap.pw)
-	    })
-            console.log(data);
-	});
-    });
-
-    $("#compvid-save-format").click(function() {
-	var fmt = 'ntsc'
-    	if ($('input:radio[name=compvid]')[1].checked) { fmt = 'pal' }
-	$.post(appBaseURL + "/compvid_save_format", { val: fmt })
-	.done(function(data) {
-            console.log(data);
-	});
-    });
-
     $("#start-oflua").click(function(){
         $.get(appBaseURL + '/start_video_engine/?engine=oflua', function(data) {
             console.log(data);
@@ -523,18 +495,6 @@ $(function () {
 	.done(function(data) {
             console.log(data);
 	});
-    });
-
-    $("#usb-sel-but").click(function(){
-        baseDirLabel = 'USB Drive';
-        workingDir = '/usbdrive/';
-        refreshWorkingDir();
-    });
-
-    $("#sd-sel-but").click(function(){
-        baseDirLabel = 'SD Card';
-        workingDir = '/sdcard/';
-        refreshWorkingDir();
     });
 
     $("#new-folder-but").click(newFolderDialog);
@@ -596,29 +556,6 @@ $(function () {
     .fail(function () {
         console.log('oops');
     });
-
-    $.get(appBaseURL + '/wifi_get_ap', function(data) {
-	ap = JSON.parse(data);
-	$('#wifi-ap-name').val(ap.name)
-	$('#wifi-ap-pw').val(ap.pw)
-    })
-
-    $.get(appBaseURL + '/wifi_get_net', function(data) {
-	ap = JSON.parse(data);
-	$('#wifi-net-name').val(ap.name)
-	$('#wifi-net-pw').val(ap.pw)
-    })
-
-    $.get(appBaseURL + '/compvid_get_format', function(data) {
-	compvid = JSON.parse(data);
-	if (compvid.format == "ntsc") {
-            $('input:radio[name=compvid]')[0].checked = true;
-	}
-	if (compvid.format == "pal") {
-	    $('input:radio[name=compvid]')[1].checked = true;
-	}
-    })
-
 
 });
 
