@@ -1,0 +1,30 @@
+{
+  "name": "eyese_web_node",
+  "version": "1.0.0",
+  "description": "Websocket server for Eyesy web",
+  "main": "client.js",
+  "dependencies": {
+    "d": "^1.0.1",
+    "debug": "^4.2.0",
+    "es5-ext": "^0.10.53",
+    "es6-iterator": "^2.0.3",
+    "es6-symbol": "^3.1.3",
+    "ext": "^1.4.0",
+    "is-typedarray": "^1.0.0",
+    "ms": "^2.1.2",
+    "nan": "^2.14.2",
+    "next-tick": "^1.1.0",
+    "tail": "^2.0.4",
+    "type": "^2.1.0",
+    "typedarray-to-buffer": "^3.1.5",
+    "websocket": "^1.0.32",
+    "yaeti": "^1.0.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "",
+  "license": "ISC"
+}

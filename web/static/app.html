@@ -21,16 +21,16 @@
               background-color: white;
                 opacity: 0.01;
         }
-        #menu { 
+        #menu {
             top:  0px;
         }
 
-        #title { 
+        #title {
             /*height: 32px;
             padding: 4px;
             background-color: #222;*/
         }
-         
+
         #left-col {
             float: left;
             padding-top: 4px;
@@ -40,13 +40,13 @@
             background-color: #222;
             height: calc(100% - 4px);
         }
-        #right-col { 
+        #right-col {
             height: 100%;
             margin-left:250px;
         }
         #modees {
         }
-        #vconsole-container { 
+        #vconsole-container {
            /* border:1px solid #F00; */
             overflow:auto;
             height: calc(25% - 28px);
@@ -55,11 +55,11 @@
 	#vconsole {
             padding-left:4px;
 	}
-        #editor-container { 
+        #editor-container {
             /*border:1px solid #0F0; */
             height: 75%;
         }
-        #settings-container { 
+        #settings-container {
             /*border:1px solid #0F0; */
             height: 75%;
 	    display:none;
@@ -67,20 +67,20 @@
 	#settings {
 	    padding: 8px;
             overflow:auto;
-            height: calc(100% - 30px); 
+            height: calc(100% - 30px);
 	}
 
   	#editor {
             overflow:auto;
-            height: calc(100% - 10px); 
+            height: calc(100% - 10px);
         }
         pre {font-family:"Lucida Console", Monaco, monospace;}
         body {
-            height: calc(100vh - 20px); 
+            height: calc(100vh - 20px);
             background-color: black;
             color : white;
             font-family:"Lucida Console", Monaco, monospace;
-            font-size: 12px; 
+            font-size: 12px;
         }
          .side-button {
             float:left;
@@ -96,7 +96,7 @@
             background-color:#666;
             cursor: pointer;
         }
-        
+
         .fsfile:hover {
             background-color:#666;
             cursor: pointer;
@@ -122,7 +122,7 @@
 	    float: right;
 	    padding-top: 4px;
             padding-right: 8px;
-	}    
+	}
       	.dl-but a {
 	    color: white;
 	    text-decoration: none;
@@ -130,7 +130,7 @@
 	}
 	.dl-but a:hover{
 	    color: #ccc;
-	}	
+	}
 	.breadcrumb {
             list-style-type: none;
             padding: 0;
@@ -156,7 +156,7 @@
             overflow: hidden;
         }
         .mode-button:hover {color:#FF00FF;}
- 	
+
 	#files-table {
             margin-top:6px;
             overflow: auto;
@@ -182,9 +182,9 @@
             left:       0;
             height:     100%;
             width:      100%;
-            background: rgba( 255, 255, 255, .25 ) 
-                        url('assets/loading.gif') 
-                        50% 50% 
+            background: rgba( 255, 255, 255, .25 )
+                        url('assets/loading.gif')
+                        50% 50%
                         no-repeat;
         }
        .modal-dialog {
@@ -227,7 +227,7 @@
         /* When the body has the loading class, we turn
            the scrollbar off with overflow:hidden */
         body.loading {
-            overflow: hidden;   
+            overflow: hidden;
         }
 
         /* Anytime the body has the loading class, our
@@ -243,21 +243,13 @@
 
   </head>
   <body>
-    <!--div id="menu" >
-    <a class="side-button" href="index.html">Editor</a> &nbsp;&nbsp; | &nbsp;&nbsp; 
-    </div-->
 
-    <!--h1 id="title"></h1-->
-    
 
 	<div id="left-col">
-        <div id="show-settings" class="side-button" style="">Settings</div>
-        <div style="clear:both;"></div>
-        <br/>
         <div id="start-oflua" class="side-button">Start oFLua</div>
-        <!--div id="start-python" class="side-button">Start Video</div-->
+        <div id="start-python" class="side-button">Start Python</div>
         <div style="clear:left;"></div>
-        <div id="stop-video" class="side-button">Stop Video</div>
+        <div id="stop-video" class="side-button">Stop Video Engine</div>
         <div style="clear:left;"></div>
         <br/>
 
@@ -267,9 +259,6 @@
         <br/>
 
         <div id="control-panel">
-            <!--div id="sd-sel-but" class="side-button">SD Card</div>
-            <div id="usb-sel-but" class="side-button">USB Drive</div>
-            <div style="clear:left;"></div-->
             <div id="cut-but"  class="side-button">Cut</div>
             <div id="copy-but" class="side-button">Copy</div>
             <div  id="paste-but" class="side-button">Paste</div>
@@ -281,6 +270,7 @@
             <div style="clear:left;"></div>
             <label class="side-button">Upload<input id="fileupload" type="file" name="files[]" value="Upload" style="display: none;" multiple></label>
             <div id="new-folder-but" class="side-button">New Folder</div>
+            <div id="new-file-but" class="side-button">New File</div>
             <div style="clear:left;"></div>
             <ul class="breadcrumb" id="fsbreadcrumb"></ul>
         </div>
@@ -301,48 +291,8 @@
         </div>
     </div>
 
-    <div id="right-col">        
+    <div id="right-col">
         <div id="title-bar"><span id="title">...</span></div>
-
-        <div id="settings-container">
-		<div id="settings">
-		    <h3>WiFi Network</h3>
-		    <p>Enter network details. When it boots up the EYESY will attempt to join this network.</p>
-		    <p>Network Name <input type="text" id="wifi-net-name" value="Name"></p>
-		    <p>Password <input type="text" id="wifi-net-pw" value=""></p>
-		    <div id="wifi-save-net" class="side-button">Save</div>
-	           
-		    <br/> 
-		    <br/> 
-		    <h3>WiFi Access Point</h3>
-		    <p>Hold down the shift button while the EYESY boots up to enable access point mode.</p>
-		    <p>In access point mode the EYESY will create a WiFi network that you can join from your computer.</p>
-		    <p>By default the network name is 'EYESY' and the password is 'coolmusic'. This can be changed below.</p>
-		    <p>Network Name <input type="text" id="wifi-ap-name" value="Name"></p>
-		    <p>Password <input type="text" id="wifi-ap-pw" value="Password"></p>
-		    <div id="wifi-save-ap" class="side-button">Save</div>
-
-		    <br/>
-		    <br/>
-		    <p>WiFi settings take effect after restarting the EYESY.</p>
-			    
-		    <h3>Composite Video Format</h3>
-		    <p>When the EYESY is not connected to a HDMI monitor it will output composite video.</p>
-		    <p>Select NTSC or PAL depending on the type of television you are using.</p>
-		    <p> 
-		     <input type="radio" id="compvid-ntsc-select" name="compvid" value="ntsc">
-		     <label for="compvid-ntsc-select">NTSC</label><br>
-		     <input type="radio" id="compvid-pal-select" name="compvid" value="pal">
-		     <label for="compvid-pal-select">PAL</label><br> 
-		    </p>
-		    <div id="compvid-save-format" class="side-button">Save</div>
-
-		    <br/>
-		    <br/>
-		    <p>Video settings take effect after restarting the EYESY.</p>
-	
-		</div>
-	</div>
 
         <div id="editor-container">
             <div id="editor">
@@ -360,9 +310,9 @@
             <div style="clear:both"></div>
         </div>
     </div>
-		
+
     <script>
-	const ws = new WebSocket('ws://'+location.host+':9898/');
+	var ws = new WebSocket('ws://'+location.hostname+':9898/');
 	ws.onopen = function() {
 		console.log('WebSocket Client Connected');
 		ws.send('Hi this is web client.');
@@ -378,3 +328,4 @@
 
     </body>
 </html>
+
