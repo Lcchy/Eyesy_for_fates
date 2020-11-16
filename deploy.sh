@@ -14,6 +14,7 @@ sudo pip install psutil cherrypy
 # Node packages
 cd web/node && npm install && cd ../..
 
+# Move service files into place and make sure perms are set correctly.
 services=("eyesy-python.service" "eyesy-web.service" "eyesy-web-socket.service" "eyesy-pd.service")
 for i in "${services[@]}"
 do
@@ -21,6 +22,8 @@ do
   sudo cp systemd/$i /etc/systemd/system
 done
 
+# Move PD into place.
 cp pd/*.pd_linux ../../pdexternals
 
+# Reload services.
 sudo systemctl daemon-reload
