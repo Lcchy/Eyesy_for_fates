@@ -61,6 +61,8 @@ class System:
     
     # audio
     audio_in = [0] * 100
+    audio_left = [0] * 100
+    audio_right = [0] * 100
     audio_peak = 0
     audio_trig = False
     audio_scale = 1.0

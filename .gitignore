@@ -1,8 +1,7 @@
 .DS_Store
 web/node/node_modules/
 tmp/
+*.pyc
+presets/*
 
-# Byte-compiled / optimized / DLL files
-__pycache__/
-*.py[cod]
-*$py.class
+system/shift-params.txt
