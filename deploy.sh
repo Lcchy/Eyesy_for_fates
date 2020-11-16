@@ -3,7 +3,8 @@
 set -ex
 
 # Add nodejs Debian package as source.
-curl -sL https://deb.nodesource.com/setup_14.x | sudo bash -
+# Note the need to allow releaseinfo changes. See https://askubuntu.com/questions/989906/explicitly-accept-change-for-ppa-label
+curl -sL https://deb.nodesource.com/setup_14.x | sed -e 's/apt-get /apt-get --allow-releaseinfo-change /g' | sudo bash -
 
 # Debian packages
 sudo apt install -y python-pygame python-liblo python-alsaaudio python-pip nodejs
