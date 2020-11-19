@@ -1,16 +1,19 @@
+import sys
+global AOUT_NORNS
+AOUT_NORNS = (len(sys.argv) > 2) & (sys.argv[1] == "-aout") & (sys.argv[2] == "norns")
+
 import pygame
 import time
 import etc_system
 import traceback
-import sys
 import psutil
-#from pygame.locals import *
 import osc
 import sound
 import osd
 import liblo
 import os
 print "starting..."
+print(sys.argv)
 
 # create etc object
 # this holds all the data (mode and preset names, knob values, midi input, sound input, current states, etc...)
@@ -24,7 +27,7 @@ etc.clear_flags()
 osc.init(etc)
 
 # setup alsa sound
-sound.init(etc)
+sound.init(etc, AOUT_NORNS)
 
 # init pygame, this has to happen after sound is setup
 # but before the graphics stuff below
@@ -168,7 +171,7 @@ while 1:
         mode = sys.modules[etc.mode]
         if (mode_load_error_displayed == True):
             # If we've gotten here, the mode has loaded and we can reset this flag.
-            mode_load_error_displayed = False;
+            mode_load_error_displayed = False
     except :
         if (mode_load_error_displayed != True):
             etc.error = "Mode " + etc.mode  + " not loaded, probably has errors."
@@ -233,5 +236,3 @@ while 1:
 time.sleep(1)
 
 print "Quit"
-
-

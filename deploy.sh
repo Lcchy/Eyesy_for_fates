@@ -10,18 +10,15 @@ curl -sL https://deb.nodesource.com/setup_14.x | sed -e 's/apt-get /apt-get --al
 sudo apt install -y python-pygame python-liblo python-alsaaudio python-pip nodejs
 
 # Python packages
-sudo pip install psutil cherrypy
+sudo pip install psutil cherrypy numpy JACK-Client
 
 # Node packages
 cd web/node && npm install && cd ../..
 
 # Move service files into place and make sure perms are set correctly.
-services=("eyesy-python.service" "eyesy-web.service" "eyesy-web-socket.service" "eyesy-pd.service")
-for i in "${services[@]}"
-do
-  sudo chmod 644 systemd/$i
-  sudo cp systemd/$i /etc/systemd/system
-done
+sudo chmod 644 systemd/*
+sudo cp systemd/* /etc/systemd/system
+
 
 # Move PD into place.
 cp pd/*.pd_linux ../../pdexternals
