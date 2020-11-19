@@ -1,5 +1,5 @@
 {
-  "name": "eyese_web_node",
+  "name": "eyesy_web_node",
   "version": "1.0.0",
   "description": "Websocket server for Eyesy web",
   "main": "client.js",
@@ -11,10 +11,10 @@
     "es6-symbol": "^3.1.3",
     "ext": "^1.4.0",
     "is-typedarray": "^1.0.0",
+    "journalctl": "^1.1.0",
     "ms": "^2.1.2",
     "nan": "^2.14.2",
     "next-tick": "^1.1.0",
-    "tail": "^2.0.4",
     "type": "^2.1.0",
     "typedarray-to-buffer": "^3.1.5",
     "websocket": "^1.0.32",

@@ -4,7 +4,7 @@ Description=Python Pygame Video Engine
 [Service] 
 Type=simple
 WorkingDirectory=/home/we/sidekick/patches/Eyesy/engines/python
-ExecStart=nohup python main.py
+ExecStart=nohup python -u main.py
 
 [Install] 
 WantedBy=multi-user.target
