@@ -1,6 +1,9 @@
 import sys
 global AOUT_NORNS
-AOUT_NORNS = (len(sys.argv) > 2) & (sys.argv[1] == "-aout") & (sys.argv[2] == "norns")
+if (len(sys.argv) > 2):
+    AOUT_NORNS = (sys.argv[1] == "-aout") & (sys.argv[2] == "norns")
+else:
+    AOUT_NORNS = False
 
 import pygame
 import time
