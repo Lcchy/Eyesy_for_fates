@@ -65,8 +65,9 @@ def recv() :
                 avg_l += data_l[3 * i + j]
                 avg_r += data_r[3 * i + j]
             else:
-                avg_l +=audioop.getsample(ldata,2,3 * i + j)
-                avg_r +=audioop.getsample(rdata,2,3 * i + j)
+                if l > 0:
+                    avg_l +=audioop.getsample(ldata, 2, (i * 3) + j)
+                    avg_r +=audioop.getsample(rdata, 2, (i * 3) + j)
     # except :
     #     pass
 
