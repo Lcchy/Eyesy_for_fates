@@ -1,6 +1,5 @@
 #/bin/bash
 echo starting Eyesy
-cd ~/sidekick/patches/Eyesy
 
 # make sure the log file exists
 touch /tmp/video.log

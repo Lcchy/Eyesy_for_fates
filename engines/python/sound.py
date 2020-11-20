@@ -53,8 +53,9 @@ def recv() :
     else:
         # get audio from alsa
         l,data = inp.read()
-        ldata = audioop.tomono(data, 2, 1, 0)
-        rdata = audioop.tomono(data, 2, 0, 1)
+        if l > 0:
+            ldata = audioop.tomono(data, 2, 1, 0)
+            rdata = audioop.tomono(data, 2, 0, 1)
     peak = 0
     # try :
     for i in range(0,100) :

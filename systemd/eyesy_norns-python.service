@@ -1,7 +1,8 @@
 [Unit] 
 Description=Python Pygame Video Engine
 
-[Service] 
+[Service]
+User=we
 Type=simple
 WorkingDirectory=/home/we/sidekick/patches/Eyesy/engines/python
 ExecStart=nohup python -u main.py -aout norns
