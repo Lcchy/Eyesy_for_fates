@@ -174,7 +174,7 @@ def keys_callback(path, args) :
     if (k == 1 and v > 0) : 
         if (etc.osd) : etc.set_osd(False)
         else : etc.set_osd(True)
-    if (k == 3 and v > 0) : 
+    if (k == 3 and v > 0) :
         if (etc.auto_clear) : etc.auto_clear = False
         else : etc.auto_clear = True
 
@@ -198,6 +198,8 @@ def init (etc_object) :
         osc_server = liblo.Server(4000)
     except liblo.ServerError, err:
         print str(err)
+    
+    # added methods for TouchOsc template as it cannot send two arguments
     osc_server.add_method("/knobs/1", 'f', knob1_callback)
     osc_server.add_method("/knobs/2", 'f', knob2_callback)
     osc_server.add_method("/knobs/3", 'f', knob3_callback)
@@ -213,6 +215,7 @@ def init (etc_object) :
     osc_server.add_method("/key/9", 'f', skey_callback)
     osc_server.add_method("/key/10", 'f', skey_callback)
 
+    # original osc methods
     osc_server.add_method("/knobs", 'iiiiii', knobs_callback)
     osc_server.add_method("/key", 'ii', keys_callback)
     osc_server.add_method("/mblob", 'b', mblob_callback)
