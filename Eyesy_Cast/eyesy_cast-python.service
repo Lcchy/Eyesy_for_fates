@@ -1,0 +1,12 @@
+[Unit] 
+Description=Python Pygame Video Engine
+
+[Service]
+Environment=DISPLAY=:1
+User=we
+Type=simple
+WorkingDirectory=/home/we/sidekick/patches/Eyesy/engines/python
+ExecStart=nohup python -u main.py
+
+[Install] 
+WantedBy=multi-user.target
