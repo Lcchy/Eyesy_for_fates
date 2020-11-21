@@ -117,7 +117,7 @@ etc.memory_used = (etc.memory_used / 75) * 100
 if (etc.memory_used > 100): etc.memory_used = 100
 
 # set initial mode
-etc.set_mode_by_index(0)
+etc.set_mode_by_index(18)
 mode = sys.modules[etc.mode]
 
 midi_led_flashing = False

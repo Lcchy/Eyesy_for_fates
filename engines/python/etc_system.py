@@ -72,16 +72,16 @@ class System:
     link_connected = False
 
     # knobs a used by mode 
-    knob1 = .200
-    knob2 = .200
-    knob3 = .200
-    knob4 = .200
-    knob5 = .200
+    knob1 = .500
+    knob2 = .500
+    knob3 = .500
+    knob4 = .500
+    knob5 = .500
    
-    # knob values used internally
-    knob = [.2] * 5
-    knob_hardware = [.2] * 5
-    knob_snapshot = [.2] * 5
+    # knob values used internally (custom init for the mode Football Scope)
+    knob = [0.173, 0.811, 0.496, 0.520, 0]
+    knob_hardware = [0.173, 0.811, 0.496, 0.520, 0]
+    knob_snapshot = [0.173, 0.811, 0.496, 0.520, 0]
     knob_override = [False] * 5
 
     # midi stuff (CC gets updated into knobs
