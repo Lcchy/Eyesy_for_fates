@@ -8,7 +8,7 @@ vncserver -localhost no
 
 amixer cset numid=11 on
 
-echo Starting Eyesy 
+echo Starting Eyesy
 systemctl start eyesy_cast-python.service
 systemctl start eyesy-web.service
 systemctl start eyesy-web-socket.service

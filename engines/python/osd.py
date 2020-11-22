@@ -444,20 +444,20 @@ def render_shift_overlay(screen) :
 
     font = pygame.font.Font("font.ttf", 16)
 
-    # shift lines
-    text = font.render(etc.shift_line[0], True, etc.WHITE, etc.BLACK)
+    # shift lines 
+    text = font.render(" 1: Input Gain {0} % ".format(100 * etc.audio_scale), True, etc.WHITE, etc.BLACK)
     text_rect = text.get_rect()
     text_rect.x = 40
     text_rect.centery = 100
     screen.blit(text, text_rect)
 
-    text = font.render(etc.shift_line[1], True, etc.WHITE, etc.BLACK)
+    text = font.render(" 2: Trigger Source {0} ".format(etc.trigger_sources[etc.trigger_source - 1]), True, etc.WHITE, etc.BLACK)
     text_rect = text.get_rect()
     text_rect.x = 40
     text_rect.centery = 150
     screen.blit(text, text_rect)
     
-    text = font.render(etc.shift_line[2], True, etc.WHITE, etc.BLACK)
+    text = font.render(" 3: MIDI Channel {0} ".format(etc.midi_ch), True, etc.WHITE, etc.BLACK)
     text_rect = text.get_rect()
     text_rect.x = 40
     text_rect.centery = 200

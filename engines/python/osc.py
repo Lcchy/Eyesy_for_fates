@@ -58,6 +58,10 @@ def link_present_callback(path, args):
     val = args[0]
     if val == 1 : etc.link_connected = True
     else : etc.link_connected = False
+    # using this a sign of life of the pd patch:
+    if not(etc.params_sent_pd):
+        etc.recall_shift_params()
+        send_params_pd()
 
 def mblob_callback(path, args):
     global etc, cc_last, pgm_last, notes_last, clk_last
@@ -107,6 +111,20 @@ def reload_callback(path, args):
     print "reloading: " + str(etc.mode)
     etc.reload_mode()
 
+def midi_ch_callback(path, args):
+    global etc
+    val = args[0]
+    etc.midi_ch = val
+    send("/midi_ch", val)
+
+def trigger_source_callback(path, args):
+    global etc
+    val = args[0]
+    etc.trigger_source = val
+    if val == 0 : etc.audio_trig_enable = True
+    else : etc.audio_trig_enable = False
+    send("/trigger_source", val)
+
 def knobs_callback(path, args):
     global etc
     k1, k2, k3, k4, k5, k6 = args
@@ -150,7 +168,10 @@ def shift_callback(path, args) :
     if stat == 1 : 
         etc.shift = True
         etc.set_osd(False)
-    else : etc.shift = False
+        send("/shift", stat)
+    else : 
+        etc.shift = False
+        etc.save_shift_params()
     print "shift: " + str(etc.shift)
 
 def shift_line_callback(path, args) :
@@ -231,6 +252,8 @@ def init (etc_object) :
     osc_server.add_method("/trig", 'i', trig_callback)
     osc_server.add_method("/atrigen", 'i', audio_trig_enable_callback)
     osc_server.add_method("/linkpresent", 'i', link_present_callback)
+    osc_server.add_method("/midi_ch", 'i', midi_ch_callback)
+    osc_server.add_method("/trigger_source", 'i', trigger_source_callback)
     osc_server.add_method("/sline", None, shift_line_callback)
     osc_server.add_method(None, None, fallback)
 
@@ -242,3 +265,9 @@ def recv() :
 def send(addr, args) :
     global osc_target
     liblo.send(osc_target, addr, args) 
+
+def send_params_pd():
+    global etc
+    send("/trigger_source", etc.trigger_source)
+    send("/midi_ch", etc.midi_ch)
+    etc.params_sent_pd = True
