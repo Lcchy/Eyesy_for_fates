@@ -1,8 +1,9 @@
 # EYESY_OS_fates
 
-The operating system for the EYESY video synthesizer device - remixed.
+The operating system for the [EYESY video synthesizer device](https://github.com/critterandguitari/EYESY_OS) - remixed.
 
 Adaptation of the Critter&Guitari Eyesy video synth in order to run it on Fates (or norns shield) as a Sidekick App.
+
 Eyesy Manual : https://www.critterandguitari.com/manual?m=EYESY_Manual#eyesy%E2%84%A2-user-manual
 
 Support thread for this project : https://llllllll.co/t/critter-guitari-video-synth-eyesy-for-fates-working/38144
