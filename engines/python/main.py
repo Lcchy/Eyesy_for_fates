@@ -23,6 +23,9 @@ print(sys.argv)
 # it gets passed to the modes which use the audio midi and knob values
 etc = etc_system.System()
 
+# load shift params from file
+etc.recall_shift_params()
+
 # just to make sure
 etc.clear_flags()
 

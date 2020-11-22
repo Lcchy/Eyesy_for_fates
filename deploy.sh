@@ -21,7 +21,7 @@ sudo cp systemd/* /etc/systemd/system
 
 
 # Move PD into place.
-cp pd/*.pd_linux ../../pdexternals
+cp pd/externals/*.pd_linux ../../pdexternals
 
 # Reload services.
 sudo systemctl daemon-reload
