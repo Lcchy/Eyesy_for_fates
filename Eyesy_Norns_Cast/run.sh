@@ -8,6 +8,7 @@ vncserver -localhost no
 
 echo Starting norns
 ~/sidekick/patches/Norns/run.sh
+sleep 4
 
 echo Starting Eyesy
 systemctl start eyesy_norns_cast-python.service

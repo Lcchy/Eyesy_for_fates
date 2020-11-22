@@ -1,9 +1,13 @@
 #/bin/bash
-echo starting Eyesy
 
 # make sure the log file exists
 touch /tmp/video.log
 
+echo Starting norns
+~/sidekick/patches/Norns/run.sh
+sleep 4
+
+echo Starting Eyesy
 systemctl start eyesy_norns-python.service
 systemctl start eyesy-web.service
 systemctl start eyesy-web-socket.service

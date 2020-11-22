@@ -5,6 +5,7 @@ Description=Python Pygame Video Engine
 Type=simple
 Environment=DISPLAY=:1
 User=we
+Group=we
 WorkingDirectory=/home/we/sidekick/patches/Eyesy/engines/python
 ExecStart=nohup python -u main.py -aout norns
 
