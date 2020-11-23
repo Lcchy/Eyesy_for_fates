@@ -17,14 +17,20 @@ def init (etc_object, AOUT_NORNS) :
     etc = etc_object
 
     if aout_norns:
+        norns_connected = False
         # set up jack for sound in
         client = jack.Client("fates_jack_client", servername="default")
         client.inports.register('input_1')
         client.inports.register('input_2')
         client.blocksize = 512
         client.activate()
-        client.connect('softcut:output_1', 'fates_jack_client:input_1')
-        client.connect('softcut:output_2', 'fates_jack_client:input_2')
+        while not(norns_connected):
+            try:
+                client.connect('SuperCollider:out_1', 'fates_jack_client:input_1')
+                client.connect('SuperCollider:out_2', 'fates_jack_client:input_2')
+                norns_connected = True
+            except:
+                pass
         time.sleep(1)
         inp = [
             client.get_port_by_name('fates_jack_client:input_1'),
@@ -34,9 +40,9 @@ def init (etc_object, AOUT_NORNS) :
         #setup alsa for sound in
         inp = alsaaudio.PCM(alsaaudio.PCM_CAPTURE,alsaaudio.PCM_NONBLOCK)
         inp.setchannels(2) 
-        inp.setrate(6000)       # Original value of 11025 was giving error.. OR 44100
+        inp.setrate(44100)       # Original value of 11025 was giving error.. OR 44100
         inp.setformat(alsaaudio.PCM_FORMAT_S16_LE)
-        inp.setperiodsize(300)  # OR 1024
+        inp.setperiodsize(1024)  # OR 1024
 
     trig_last_time = time.time()
     trig_this_time = time.time()

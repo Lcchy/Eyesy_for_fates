@@ -1,11 +1,15 @@
-[Unit] 
+[Unit]
 Description=Python Pygame Video Engine
 
 [Service]
-User=we
 Type=simple
+User=we
+Group=we
 WorkingDirectory=/home/we/sidekick/patches/Eyesy/engines/python
-ExecStart=nohup python -u main.py -aout norns
+ExecStart=python -u main.py -aout norns
+StandardInput=tty
+StandardOutput=tty
+TTYPath=/dev/tty7
 
-[Install] 
+[Install]
 WantedBy=multi-user.target
