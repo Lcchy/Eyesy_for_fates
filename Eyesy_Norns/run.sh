@@ -11,4 +11,4 @@ echo Starting Eyesy
 systemctl start eyesy_norns-python.service
 systemctl start eyesy-web.service
 systemctl start eyesy-web-socket.service
-systemctl start eyesy-pd.service
+# systemctl start eyesy-pd.service

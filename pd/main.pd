@@ -1,4 +1,4 @@
-#N canvas 353 236 1273 717 10;
+#N canvas 353 187 2366 1475 10;
 #X obj 190 393 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
 1;
 #X obj 190 321 packOSC;
@@ -14,7 +14,7 @@
 #X obj 169 241 r oscConnected;
 #X obj 444 239 delay 100;
 #X obj 595 166 delay 200;
-#N canvas 193 225 1440 720 fatesHardwareInput 0;
+#N canvas 128 1273 2421 1610 fatesHardwareInput 0;
 #X obj 754 816 outlet oscOut;
 #X msg 1075 575 sendtyped /knobs iiiiii \$1 \$2 \$3 \$4 \$5 0;
 #X obj 1200 231 r enc0;
@@ -534,7 +534,7 @@
 #X connect 138 1 111 0;
 #X restore 452 406 pd fatesHardwareInput;
 #X text 246 38 This patch controls the video engine via osc;
-#N canvas 366 166 1195 826 metro-and-trig 0;
+#N canvas 366 175 1251 1076 metro-and-trig 0;
 #N canvas 0 160 1216 609 metronome 0;
 #X floatatom 393 117 5 0 0 1 tempo - -;
 #X obj 165 127 * 360;
@@ -852,7 +852,7 @@ numbered 0-359., f 40;
 #X restore 827 342 pd midiInput;
 #X obj 862 130 unpackOSC;
 #X obj 861 91 udpreceive 4001;
-#N canvas 360 209 1424 789 sendParamsToEngine 0;
+#N canvas 360 175 2351 1033 sendParamsToEngine 0;
 #X obj 253 230 r link-session-present;
 #X msg 253 295 sendtyped /linkpresent i \$1;
 #X obj 253 265 i;
@@ -875,8 +875,11 @@ every second...;
 #X connect 2 0 1 0;
 #X connect 3 0 2 0;
 #X connect 5 0 12 0;
+#X connect 6 0 4 0;
+#X connect 7 0 4 0;
 #X connect 8 0 13 0;
 #X connect 9 0 11 0;
+#X connect 10 0 4 0;
 #X connect 11 0 10 0;
 #X connect 12 0 6 0;
 #X connect 13 0 7 0;
