@@ -26,8 +26,8 @@ def init (etc_object, AOUT_NORNS) :
         client.activate()
         while not(norns_connected):
             try:
-                client.connect('crone:output_1', 'fates_jack_client:input_1')
-                client.connect('crone:output_2', 'fates_jack_client:input_2')
+                # client.connect('crone:output_1', 'fates_jack_client:input_1')
+                # client.connect('crone:output_2', 'fates_jack_client:input_2')
                 norns_connected = True
             except:
                 pass

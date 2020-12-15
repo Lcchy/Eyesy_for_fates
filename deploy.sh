@@ -20,7 +20,15 @@ sudo chmod 644 systemd/*
 sudo cp systemd/* /etc/systemd/system
 
 # Move PD into place.
-cp pd/externals/*.pd_linux ../../pdexternals
+cp pd/externals/*.pd_linux /home/we/sidekick/pdexternals
+
+# Move Presets into media folder
+mkdir /home/we/media/eyesy
+cp -rf presets /home/we/media/eyesy
+
+# Deploy launchers into sidekick
+mkdir /home/we/sidekick/patches/Eyesy
+cp -rf launchers/* /home/we/sidekick/patches/Eyesy
 
 # Reload services.
 sudo systemctl daemon-reload

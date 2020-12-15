@@ -12,9 +12,9 @@ import csv
 
 class System:
 
-    GRABS_PATH = "../../presets/Grabs/"
-    MODES_PATH = "../../presets/Modes/Python/"
-    SCENES_PATH = "../../presets/Scenes.csv"
+    GRABS_PATH = "/home/we/media/eyesy/presets/Grabs/"
+    MODES_PATH = "/home/we/media/eyesy/presets/Modes/Python/"
+    SCENES_PATH = "/home/we/media/eyesy/presets/Scenes.csv"
 
     #RES =  (1280,720)
     RES =  (0,0)
@@ -169,7 +169,7 @@ class System:
 
     # recall saved shift params from file
     def recall_shift_params(self):
-        f = open("/home/we/sidekick/patches/Eyesy/system/shift-params.txt", 'r')
+        f = open("../../system/shift-params.txt", 'r')
         lines = f.read().splitlines()
         values = []
         for line in lines:
@@ -184,7 +184,7 @@ class System:
 
     # save shift params to file
     def save_shift_params(self):
-        f = open("/home/we/sidekick/patches/Eyesy/system/shift-params.txt", 'w')
+        f = open("../../system/shift-params.txt", 'w')
         lines = "inputGain {0};\ntrigSource {1};\nmidiCh {2};\n".format(
             100 * self.audio_scale,
             self.trigger_source,
