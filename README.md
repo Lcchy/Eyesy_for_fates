@@ -25,19 +25,19 @@ Support thread for this project : https://llllllll.co/t/critter-guitari-video-sy
    
 ### Control:
  
-##### Control via TouchOSC:
+**Control via TouchOSC:**
 - Download and install the TouchOSC app for your iOS or Android device (it is not free, I've been looking for free/opensource alternatives, please let me know if you know one; nevertheless, this app is well developped and it's also nice to suppot this kind of effort I believe)
 - Download the fitting TouchOSC template from [here](https://www.dropbox.com/sh/l5bhlr3li820olc/AAD399Ej1-16u7qgEB3BTCQ1a?dl=0) to your device and import it via the app (in Layout).
 - In the OSC setting of the app set Host to the ip adress of your fates (your device and your Fates must be on the same network)
 - Set the outgoing port to `4000` and ingoing to `4001`
 - You're `Done`!
  
-##### Control via Fates hardware:
+**Control via Fates hardware:**
 
 ![text](hardware_usage.png)
 
  
-##### Control via midi in messages (should be plug and play):
+**Control via midi in messages (should be plug and play):**
   | Midi CC    | 21,22,23,24 | 25               | 26               | 27               | 28                | 29                | 30              | 31        | 32           | 33              | 34                         | 35       |
   |-------|-------------|------------------|----------------------|-------------------|---------------------|-----------|--------------|-----------------|----------------------------|----------|------------|----------------|
   | Control | Mode Params | Background Color | Scene selection | Save or delete (long hold) | Auto Clear Toggle | Mode Selection | Take Screenshot | Info Disp | Send Trigger | ShiftKey | Input Gain | Trigger Source |
