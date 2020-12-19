@@ -17,7 +17,7 @@ Support thread for this project : https://llllllll.co/t/critter-guitari-video-sy
   
 ### Usage:
  - Connect a display to the first hdmi out
- - Boot up the fates
+ - Boot up your Fates
  - Select Eyesy in Sidekick and control the video output via the hardware buttons
  - OR select Eyesy_Norns in Sidekick. This will launch norns with Eyesy in the background. 
    This time the knobs and buttons of your Fates will only interact with Norns. In order to control Eyesy you
