@@ -19,7 +19,7 @@ Support thread for this project : https://llllllll.co/t/critter-guitari-video-sy
  - Connect a display to the first hdmi out
  - Boot up the fates
  - Select Eyesy in Sidekick and control the video output via the hardware buttons
- - OR select Eyesy_Norns in Sidekick. This will launch norns and also Eyesy in the background. 
+ - OR select Eyesy_Norns in Sidekick. This will launch norns with Eyesy in the background. 
    This time the knobs and buttons of your Fates will only interact with Norns. In order to control Eyesy you
    will have to use the TouchOSC Android (or iOS) app (see below).
    
