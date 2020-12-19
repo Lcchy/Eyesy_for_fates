@@ -50,10 +50,11 @@ The web editor lets you edit the pygame scripts that generate the visuals on the
 See the Eyesy manual for more details on using the web editor.
 
 ### Uninstall:
-Simply run: `cd ~; rm -rf Eyesy; cd /etc/systemd/system; sudo rm -f eyesy*`
+Simply run: `cd ~/sidekick/patches; rm -rf Eyesy*; cd /etc/systemd/system; sudo rm -f eyesy*`
 
 ### Rem:
 - If you don't connect the display before booting, Eyesy will launch on the fates display which is fun (but does not always work)
+- If you have some letters flickering around on the screens and it disturbs you, you can edit `boot/cmdline.txt` by changing `fbcon=map:1` to `fbcon=map:2`. Note that this will deactivate the RaspberryPi boot and login text and you will therefore no longer be able to use it via a directly connnected screen and keyboard (only ssh will work).
 - This project should work on any raspberryPi (controlling it via touchosc or midi) as long as your username is `we` and you install into a directory called `~/sidekick/patches`
 
 
