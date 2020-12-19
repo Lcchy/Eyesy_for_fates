@@ -169,7 +169,7 @@ class System:
 
     # recall saved shift params from file
     def recall_shift_params(self):
-        f = open("../../system/shift-params.txt", 'r')
+        f = open("/home/we/sidekick/patches/Eyesy/system/shift-params.txt", 'r')
         lines = f.read().splitlines()
         values = []
         for line in lines:
@@ -184,7 +184,7 @@ class System:
 
     # save shift params to file
     def save_shift_params(self):
-        f = open("../../system/shift-params.txt", 'w')
+        f = open("/home/we/sidekick/patches/Eyesy/system/shift-params.txt", 'w')
         lines = "inputGain {0};\ntrigSource {1};\nmidiCh {2};\n".format(
             100 * self.audio_scale,
             self.trigger_source,
