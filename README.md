@@ -8,6 +8,9 @@ Eyesy Manual : https://www.critterandguitari.com/manual?m=EYESY_Manual#eyesy%E2%
 Support thread for this project : https://llllllll.co/t/critter-guitari-video-synth-eyesy-for-fates-working/38144
 
 ### Installation :
+
+Please **be sure to have the latest Fates firmware** version installed (update otherwise or you won't be able to run Eyesy and Norns in parallel)
+
 ```
  cd ~/sidekick/patches
  git clone https://github.com/Lcchy/Eyesy_for_fates Eyesy
