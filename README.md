@@ -24,7 +24,12 @@ Support thread for this project : https://llllllll.co/t/critter-guitari-video-sy
    will have to use the TouchOSC Android (or iOS) app (see below).
    
 ### Control:
- 
+
+**Control via Fates hardware:**
+
+![text](hardware_usage.png)
+
+
 **Control via TouchOSC:**
 - Download and install the TouchOSC app for your iOS or Android device (it is not free, I've been looking for free/opensource alternatives, please let me know if you know one; nevertheless, this app is well developped and it's also nice to suppot this kind of effort I believe)
 - Download the fitting TouchOSC template from [here](https://www.dropbox.com/sh/l5bhlr3li820olc/AAD399Ej1-16u7qgEB3BTCQ1a?dl=0) to your device and import it via the app (in Layout).
@@ -32,10 +37,6 @@ Support thread for this project : https://llllllll.co/t/critter-guitari-video-sy
 - Set the outgoing port to `4000` and ingoing to `4001`
 - You're `Done`!
  
-**Control via Fates hardware:**
-
-![text](hardware_usage.png)
-
  
 **Control via midi in messages (should be plug and play):**
   | Midi CC    | 21,22,23,24 | 25               | 26               | 27               | 28                | 29                | 30              | 31        | 32           | 33              | 34                         | 35       |
