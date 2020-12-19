@@ -45,7 +45,7 @@ Support thread for this project : https://llllllll.co/t/critter-guitari-video-sy
 
 
 ### Web editor
-The web editor lets you edit the pygame scripts that generate the visuals on the fly. It should be accessible at http://norns.local:8080/
+The web editor lets you edit the pygame scripts that generate the visuals on the fly. It should be accessible at http://norns.local:8080/ (or IP:8080 where IP is the current ip adress of your Fates)
 
 See the Eyesy manual for more details on using the web editor.
 
