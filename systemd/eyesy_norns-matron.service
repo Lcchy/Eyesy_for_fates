@@ -1,9 +1,0 @@
-[Unit]
-
-[Service]
-Type=simple
-User=we
-Group=we
-ExecStart=/home/we/sidekick/patches/Eyesy_Norns/norns-matron-launcher.sh
-[Install]
-WantedBy=norns.target

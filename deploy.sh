@@ -26,4 +26,5 @@ cp pd/externals/*.pd_linux ../../pdexternals
 sudo systemctl daemon-reload
 
 # Put the Eyesy_Norns one folder up for a cleaner Sidekick menu
-mv Eyesy_Norns ..
+rm -rf ../Eyesy_Norns
+cp -rf Eyesy_Norns ..

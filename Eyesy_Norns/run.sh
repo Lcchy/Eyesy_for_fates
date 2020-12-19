@@ -4,11 +4,7 @@
 touch /tmp/video.log
 
 echo Starting norns
-sudo systemctl start norns-jack.service
-sudo systemctl start norns-crone.service
-sudo systemctl start norns-sclang.service
-sudo systemctl start eyesy_norns-matron.service
-sudo systemctl start norns-maiden.service
+bash /home/we/sidekick/patches/Norns/run.sh
 sleep 4
 
 echo Starting Eyesy
