@@ -9,40 +9,35 @@ etc = None
 trig_this_time = 0
 trig_last_time = 0
 sin = [0] * 100
+global ALSA
 
 def init (etc_object, AOUT_NORNS) :
 
-    global aout_norns, inp, client, etc, trig_this_time, trig_last_time, sin
-    aout_norns = AOUT_NORNS
+    global ALSA, inp, client, etc, trig_this_time, trig_last_time, sin
     etc = etc_object
+    ALSA = False
 
-    if aout_norns:
-        norns_connected = False
+    try:
         # set up jack for sound in
         client = jack.Client("fates_jack_client", servername="default")
         client.inports.register('input_1')
         client.inports.register('input_2')
         client.blocksize = 512
         client.activate()
-        while not(norns_connected):
-            try:
-                client.connect('crone:output_1', 'fates_jack_client:input_1')
-                client.connect('crone:output_2', 'fates_jack_client:input_2')
-                norns_connected = True
-            except:
-                pass
         time.sleep(1)
         inp = [
             client.get_port_by_name('fates_jack_client:input_1'),
             client.get_port_by_name('fates_jack_client:input_2')
         ]
-    else:
+    except:
+        ALSA = True
         #setup alsa for sound in
         inp = alsaaudio.PCM(alsaaudio.PCM_CAPTURE,alsaaudio.PCM_NONBLOCK)
         inp.setchannels(2) 
         inp.setrate(6000)       # Original value of 11025 was giving error.. OR 44100
         inp.setformat(alsaaudio.PCM_FORMAT_S16_LE)
         inp.setperiodsize(300)  # OR 1024
+        pass
 
     trig_last_time = time.time()
     trig_this_time = time.time()
@@ -51,8 +46,8 @@ def init (etc_object, AOUT_NORNS) :
 
 
 def recv() :
-    global client, inp, etc, trig_this_time, trig_last_time, sin
-    if aout_norns:
+    global ALSA, client, inp, etc, trig_this_time, trig_last_time, sin
+    if not(ALSA):
         # get audio (with 16 bit signed format)
         data_l = 32767 * inp[0].get_array()
         data_r = 32767 * inp[1].get_array()
@@ -68,7 +63,7 @@ def recv() :
         avg_l = 0
         avg_r = 0
         for j in range(3):
-            if aout_norns:
+            if not(ALSA):
                 avg_l += data_l[3 * i + j]
                 avg_r += data_r[3 * i + j]
             else:

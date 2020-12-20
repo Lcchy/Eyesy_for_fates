@@ -3,7 +3,7 @@ Description=Pd OSC hardware bridge for Eyesy
 
 [Service] 
 Type=simple 
-WorkingDirectory=/home/we/Eyesy
+WorkingDirectory=/home/we/sidekick/patches/Eyesy
 ExecStart=/usr/bin/pd -alsamidi -nogui -noaudio -path /home/we/sidekick/pdexternals pd/main.pd
 User=we
 Group=we

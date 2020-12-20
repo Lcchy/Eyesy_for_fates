@@ -1,0 +1,2 @@
+This is only so that this folder doesn't show up 
+in the sidekick Menu after having deployed the launchers. 

@@ -6,7 +6,7 @@ Requires=eyesy-web-socket.service
 Type=simple
 User=we
 Group=we
-WorkingDirectory=/home/we/Eyesy/web
+WorkingDirectory=/home/we/sidekick/patches/Eyesy/web
 ExecStart=cherryd -i cpapp -c prod.conf
 
 [Install]

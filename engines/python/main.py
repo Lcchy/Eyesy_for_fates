@@ -48,7 +48,7 @@ osc.send("/led", 7) # set led to running
 
 # init fb and main surfaces
 print "opening frame buffer..."
-#os.putenv('SDL_VIDEODRIVER', "directfb")
+# os.putenv('SDL_VIDEODRIVER', "localhost:0.0")
 #hwscreen = pygame.display.set_mode(etc.RES,  pygame.FULLSCREEN | pygame.DOUBLEBUF | pygame.SCALED, 32)
 hwscreen = pygame.display.set_mode(etc.RES,  pygame.FULLSCREEN | pygame.DOUBLEBUF | pygame.HWSURFACE, 32)
 #hwscreen = pygame.display.set_mode(etc.RES,  pygame.FULLSCREEN | pygame.DOUBLEBUF, 32)

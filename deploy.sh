@@ -22,9 +22,9 @@ sudo cp systemd/* /etc/systemd/system
 # Move PD into place.
 cp pd/externals/*.pd_linux ../../pdexternals
 
+# Move alternate launchers into place.
+mkdir ../Eyesys
+cp -rf launchers/* ../Eyesys
+
 # Reload services.
 sudo systemctl daemon-reload
-
-# Put the Eyesy_Norns one folder up for a cleaner Sidekick menu
-rm -rf ../Eyesy_Norns
-cp -rf Eyesy_Norns ..

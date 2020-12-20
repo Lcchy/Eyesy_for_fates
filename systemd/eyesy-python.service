@@ -3,8 +3,16 @@ Description=Python Pygame Video Engine
 
 [Service] 
 Type=simple
-WorkingDirectory=/home/we/Eyesy/engines/python
-ExecStart=nohup python -u main.py
+User=we
+Group=we
+WorkingDirectory=/home/we/sidekick/patches/Eyesy/engines/python
+ExecStart=python -u main.py
+StandardInput=tty
+StandardOutput=tty
+TTYPath=/dev/tty7
+
+# for ref:
+# https://unix.stackexchange.com/questions/58961/how-do-i-let-an-sdl-app-not-running-as-root-use-the-console
 
 [Install] 
 WantedBy=multi-user.target
