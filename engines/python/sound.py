@@ -19,15 +19,15 @@ def init (etc_object, AOUT_NORNS) :
 
     try:
         # set up jack for sound in
-        client = jack.Client("fates_jack_client", servername="default")
+        client = jack.Client("eyesy", servername="default")
         client.inports.register('input_1')
         client.inports.register('input_2')
         client.blocksize = 512
         client.activate()
         time.sleep(1)
         inp = [
-            client.get_port_by_name('fates_jack_client:input_1'),
-            client.get_port_by_name('fates_jack_client:input_2')
+            client.get_port_by_name('eyesy:input_1'),
+            client.get_port_by_name('eyesy:input_2')
         ]
     except:
         ALSA = True
