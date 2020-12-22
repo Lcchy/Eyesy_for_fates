@@ -23,7 +23,7 @@ sudo cp systemd/* /etc/systemd/system
 cp pd/externals/*.pd_linux ../../pdexternals
 
 # Move alternate launchers into place.
-mkdir ../Eyesys
+mkdir -p ../Eyesys
 cp -rf launchers/* ../Eyesys
 
 # Reload services.
