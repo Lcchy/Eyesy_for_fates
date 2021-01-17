@@ -12,9 +12,9 @@ import csv
 
 class System:
 
-    GRABS_PATH = "/home/we/media/eyesy/presets/Grabs/"
-    MODES_PATH = "/home/we/media/eyesy/presets/Modes/Python/"
-    SCENES_PATH = "/home/we/media/eyesy/presets/Scenes.csv"
+    GRABS_PATH = "../../presets/Grabs/"
+    MODES_PATH = "../../presets/Modes/Python/"
+    SCENES_PATH = "../../presets/Scenes.csv"
 
     #RES =  (1280,720)
     RES =  (0,0)
