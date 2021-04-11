@@ -3,5 +3,5 @@ web/node/node_modules/
 tmp/
 *.pyc
 presets/*
-
+id_git*
 system/shift-params.txt

@@ -1,3 +1,3 @@
-inputGain 156.425213814;
-trigSource 1;
-midiCh 9;
+inputGain 144.574797153;
+trigSource 2;
+midiCh 10;
