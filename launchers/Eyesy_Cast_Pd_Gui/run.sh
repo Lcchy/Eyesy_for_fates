@@ -5,7 +5,7 @@ cd /home/we/sidekick/patches/Eyesy
 touch /tmp/video.log
 
 echo Starting Vncserver
-vncserver -localhost no
+vncserver -localhost no -SecurityTypes None --I-KNOW-THIS-IS-INSECURE
 
 if ! jack_lsp
 then 

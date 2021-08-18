@@ -1,0 +1,12 @@
+[Unit] 
+Description=Pd OSC hardware bridge for Eyesy
+
+[Service] 
+Type=simple 
+WorkingDirectory=/home/we/sidekick/patches/Eyesy
+ExecStart=/usr/bin/pd -alsamidi -nogui -noaudio -path /home/we/sidekick/pdexternals -send "; allowHardwareCtl 0" pd/main.pd
+User=we
+Group=we
+
+[Install] 
+WantedBy=multi-user.target
