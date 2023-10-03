@@ -5,7 +5,7 @@
   "main": "client.js",
   "dependencies": {
     "d": "^1.0.1",
-    "debug": "^4.2.0",
+    "debug": "^4.3.1",
     "es5-ext": "^0.10.53",
     "es6-iterator": "^2.0.3",
     "es6-symbol": "^3.1.3",
